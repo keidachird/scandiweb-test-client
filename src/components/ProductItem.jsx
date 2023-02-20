@@ -1,12 +1,16 @@
 import { useState } from 'react'
+
 import '../sass/ProductItem.scss'
 
-export default function ProductItem({ data, handleProductChange }) {
+export default function ProductItem({ data, updateCheckedList }) {
   const [isChecked, setIsChecked] = useState(false)
 
-  const handleCheck = () => {
+  // Handle checkbox change
+  const handleCheckbox = () => {
+    // Toggle state value for product
     setIsChecked(!isChecked)
-    handleProductChange(data.sku)
+    // Add or remove sku from checkedProduct list in ProductList component
+    updateCheckedList(data.sku)
   }
 
   return (
@@ -15,7 +19,7 @@ export default function ProductItem({ data, handleProductChange }) {
         type='checkbox'
         className='delete-checkbox product-item__checkbox'
         checked={isChecked}
-        onChange={handleCheck}
+        onChange={handleCheckbox}
       />
       <div className='product-item__sku'>{data.sku}</div>
       <div className='product-item__name'>{data.name}</div>
