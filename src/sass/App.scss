@@ -72,6 +72,10 @@ body {
   padding: 3rem;
   margin-bottom: 3rem;
   border-bottom: 0.2rem solid #343a40;
+
+  &__title {
+    font-size: 3.6rem;
+  }
 }
 
 .main {

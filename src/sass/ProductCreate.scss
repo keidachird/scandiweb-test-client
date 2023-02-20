@@ -25,6 +25,10 @@
   align-items: center;
   gap: 2rem;
 
+  &__error {
+    color: red;
+  }
+
   &__item {
     width: 80%;
     padding: 0 10rem;
