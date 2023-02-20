@@ -14,9 +14,6 @@ function App() {
           <Routes>
             <Route index element={<ProductList />} />
             <Route path='add-product' element={<ProductCreate />} />
-            <Route path='*' element={<Footer />}>
-              sdf
-            </Route>
           </Routes>
         </BrowserRouter>
       </main>
