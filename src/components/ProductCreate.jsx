@@ -4,7 +4,8 @@ import { Link, useNavigate } from 'react-router-dom'
 
 import '../sass/ProductCreate.scss'
 
-const API_URL = 'http://localhost:80/'
+// const API_URL = 'http://localhost:80/'
+const API_URL = 'https://scandiweb-test-api.herokuapp.com/'
 
 export default function ProductCreate() {
   const [productData, setProductData] = useState({

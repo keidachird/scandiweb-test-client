@@ -5,7 +5,8 @@ import { Link } from 'react-router-dom'
 import ProductItem from './ProductItem'
 import '../sass/ProductList.scss'
 
-const API_URL = 'http://localhost:80/'
+// const API_URL = 'http://localhost:80/'
+const API_URL = 'https://scandiweb-test-api.herokuapp.com/'
 
 export default function ProductList() {
   const [products, setProducts] = useState([])
