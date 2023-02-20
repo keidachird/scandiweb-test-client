@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom'
 import ProductItem from './ProductItem'
 import '../sass/ProductList.scss'
 
+const API_URL = 'http://localhost:80/'
+
 export default function ProductList() {
   const [products, setProducts] = useState([])
   const [checkedProducts, setCheckedProducts] = useState([])
@@ -13,32 +15,28 @@ export default function ProductList() {
     getProducts()
   }, [])
 
-  const getProducts = () => {
-    axios.get('http://localhost:80/').then(response => {
-      setProducts(response.data)
-    })
+  // Get list of products from api
+  const getProducts = async () => {
+    const response = await axios.get(API_URL)
+    setProducts(response.data)
   }
 
-  const massDeleteProduct = () => {
-    console.log(checkedProducts)
-    axios
-      .delete('http://localhost:80', { data: { skuList: checkedProducts } })
-      .then(() => {
-        getProducts()
-        // setProducts(
-        //   products.filter(value => !checkedProducts.includes(value.sku))
-        // )
-        setCheckedProducts([])
-      })
+  // Delete products based on list of sku values
+  const massDeleteProduct = async () => {
+    await axios.delete(API_URL, { data: { skuList: checkedProducts } })
+    getProducts()
+    setCheckedProducts([])
   }
 
-  const handleProductChange = sku => {
+  // Update checkedProducts list
+  const updateCheckedList = sku => {
+    // If sku is in checked list than remove it
     if (checkedProducts.includes(sku)) {
-      const newChecked = checkedProducts.filter(value => value !== sku)
-      setCheckedProducts(newChecked)
+      setCheckedProducts(checkedProducts.filter(value => value !== sku))
       return
     }
 
+    // Add sku in checked list
     setCheckedProducts([...checkedProducts, sku])
   }
 
@@ -46,12 +44,15 @@ export default function ProductList() {
     <div className='product-list container'>
       {/* Header */}
       <header className='header product-list__header'>
-        <h2 className='product-list__title'>Product List</h2>
+        {/* Title */}
+        <h2 className='header__title'>Product List</h2>
 
+        {/* Add button */}
         <Link to='add-product' className='btn btn--add'>
           ADD
         </Link>
 
+        {/* Mass delete button */}
         <button className='btn btn--delete' onClick={massDeleteProduct}>
           MASS DELETE
         </button>
@@ -63,7 +64,7 @@ export default function ProductList() {
           <ProductItem
             key={product.sku}
             data={product}
-            handleProductChange={handleProductChange}
+            updateCheckedList={updateCheckedList}
           />
         ))}
       </div>
