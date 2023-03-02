@@ -9,7 +9,7 @@ This is a frontend part of junior developer test task for Scandiweb.
 It is build on React using Sass for styling.
 For hosting service I used [netlify](https://www.netlify.com/).
 
-You can access this api by clicking [here](https://scandiweb-test-client.netlify.app/).
+You can access UI by clicking [here](https://scandiweb-test-client.netlify.app/).
 
 ## Stack
 
